@@ -90,7 +90,6 @@ class ServerThread extends Thread {
                this.userNames.add(name);
            }
             // here is the username
-           // logSink.log(name);
 
             server.broadCast("**["+name+"] Entered**");
             server.broadCast("hello: " + name + " welcome back");
