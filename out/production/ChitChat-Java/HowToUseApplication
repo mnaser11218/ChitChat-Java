@@ -1,0 +1,17 @@
+How to use the application:
+
+Run the socketServer and enter localHost as the server Ip, then enter a nickname for the server.
+ Now, the server has entered the chat.
+
+Afterwards, run the socketClient, enter localhost as the server Ip, then enter a nickname for the clent.
+Now, the client has entered the chat.
+Once the server and the client has entered the chat, they can now chat.
+
+// steps:
+1; be able to log, so you need a logger instance.
+2- to be able to write to a file you need a handler obj
+and the destination would be the file
+3- throw an exception if you cant read the file
+4- currrent user list look at examples of casino when you store loggers.
+5- have ui class manage interactions
+6- add a current user lists: store all the previous users and display the users in the ui

@@ -1,0 +1,11 @@
+How to use the application:
+
+Run the socketServer and enter localHost as the server Ip, then enter a nickname for the server.
+ Now, the server has entered the chat.
+
+Afterwards, run the socketClient, enter localhost as the server Ip, then enter a nickname for the clent.
+Now, the client has entered the chat.
+Once the server and the client has entered the chat, they can now chat.
+
+
+To see the history of the chat, open app.log.

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class SocketClient extends JFrame implements ActionListener, Runnable {
@@ -13,6 +14,9 @@ public class SocketClient extends JFrame implements ActionListener, Runnable {
     JScrollPane jp = new JScrollPane(textArea);
     JTextField input_Text = new JTextField();
     JMenuBar menuBar = new JMenuBar();
+    FileLogSinkClass logSink = new FileLogSinkClass("app.log");
+    String userName;
+
 
     Socket sk;
     BufferedReader br;
@@ -62,8 +66,9 @@ public class SocketClient extends JFrame implements ActionListener, Runnable {
     public void serverConnection() {
         try {
             String IP = JOptionPane.showInputDialog(this, "Please enter a server IP.", JOptionPane.INFORMATION_MESSAGE);
+            // created a new socket which connects the client to the server
             sk = new Socket(IP, 1234);
-
+            //
             String name = JOptionPane.showInputDialog(this, "Please enter a nickname", JOptionPane.INFORMATION_MESSAGE);
 /*            while (name.length() > 7) {
                 name = JOptionPane.showInputDialog(this, "Please enter a nickname.(7 characters or less)", JOptionPane.INFORMATION_MESSAGE);
@@ -75,7 +80,8 @@ public class SocketClient extends JFrame implements ActionListener, Runnable {
             //writing
             pw = new PrintWriter(sk.getOutputStream(), true);
             pw.println(name); // Send to server side
-
+            this.logSink.log( "Date: "  + new Date() + " \n name: " +  name);
+            this.userName = name;
             new Thread(this).start();
 
         } catch (Exception e) {
@@ -104,6 +110,7 @@ public class SocketClient extends JFrame implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
         String data = input_Text.getText();
         pw.println(data); // Send to server side
+        this.logSink.log(new Date() +  "\n" + " Name: "+ this.userName +  "\n Message sent: " + data);
         input_Text.setText("");
     }
 }
